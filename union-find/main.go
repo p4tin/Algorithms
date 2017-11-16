@@ -1,30 +1,17 @@
 package main
 
-import "fmt"
-
-type DataSet struct {
-	Size int
-	DirectPaths map[int]int
-}
-
-func CreateDataSet(size int) *DataSet {
-		return &DataSet{
-			Size: size,
-			DirectPaths: make(map[int]int),
-		}
-}
-
-func (ds *DataSet)Connect(x, y int) {
-	if _, ok := ds.DirectPaths[x]; ok {
-		return
-	} else if _, ok := ds.DirectPaths[y]; ok {
-		return
-	} else {
-		ds.DirectPaths[x] = y
-	}
-}
+import (
+	"Algorithms/union-find/quickunionweighted"
+	"fmt"
+)
 
 func main() {
-	ds := CreateDataSet(10)
+	maxSize := 10
+	ds := quickunionweighted.CreateDataSet(maxSize)
+	ds.Union(1, 2)
+	ds.Union(5, 6)
+	ds.Union(3, 4)
+	ds.Union(7, 9)
+	ds.Union(2, 3)
 	fmt.Printf("%+v", ds)
 }
